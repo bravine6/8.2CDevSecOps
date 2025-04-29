@@ -17,16 +17,22 @@ pipeline {
             }
             post {
                 success {
-                    mail to: "mickybravine@gmail.com",
-                    subject: "Run Tests Stage: SUCCESS",
-                    body: "Run Tests has been successfully finished."
-                    attachLog: true
+                    emailext(
+                        to         : "mickybravine@gmail.com",
+                        subject    : "Run Tests Stage: SUCCESS",
+                        body       : "Run Tests completed successfully. See attached console log.",
+                        mimeType   : 'text/plain',
+                        attachLog  : true
+                    ) 
                 }
                 failure {
-                    mail to: "mickybravine@gmail.com",
-                    subject: "Run Tests Stage: FAILED",
-                    body: "Run Tests has failed."
-                    attachLog: true
+                    emailext(
+                        to         : "mickybravine@gmail.com",
+                        subject    : "Run Tests Stage: FAILED",
+                        body       : "Run Tests failed. See attached console log.",
+                        mimeType   : 'text/plain',
+                        attachLog  : true
+                    )
                 }
             }
         }
@@ -42,16 +48,23 @@ pipeline {
             }
             post {
                 success {
-                    mail to: "mickybravine@gmail.com",
-                    subject: "Security Scan: SUCCESS",
-                    body: "Security scan has been successfully finished"
-                    attachLog: true
+                    emailext(
+                        to                : "mickybravine@gmail.com",
+                        subject           : "Security Scan Stage: SUCCESS",
+                        body              : "Security scan completed successfully. See attached console log.",
+                        mimeType          : 'text/plain',
+                        attachLog         : true
+                    )
                 }
                 failure {
-                    mail to: "mickybravine@gmail.com",
-                    subject: "Security scan Stage: FAILED",
-                    body: "NPM Audit has failed."
-                    attachLog: true
+                    emailext(
+                        to                : "mickybravine@gmail.com",
+                        subject           : "Security Scan Stage: FAILED",
+                        body              : "Security scan failed. See attached console log.",
+                        mimeType          : 'text/plain',
+                        attachLog         : true
+                    )
+
                 }
             }
         }
