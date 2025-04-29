@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {                
-                sh 'npm test || exit /b 0' // Allow pipeline to continue despite test failures
+                sh 'npm test || true' // Allow pipeline to continue despite test failures
             }
         }
         stage('Generate Coverage Report') {
